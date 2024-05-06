@@ -6,6 +6,12 @@ public class Coche {
     private String modelo;
     private int velocidad;
 
+    /**
+     * Constructor de la clase Coche
+     * @param matricula
+     * @param modelo
+     * @param velocidad
+     */
     public Coche(String matricula, String modelo, int velocidad) {
         this.matricula = matricula;
         this.modelo = modelo;
