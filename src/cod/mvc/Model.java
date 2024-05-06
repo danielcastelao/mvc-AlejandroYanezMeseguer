@@ -27,6 +27,19 @@ public class Model {
         return null;
     }
 
+    public Integer cambiarVelocidad(String matricula, int velocidad){
+
+        for(Coche coche : parkin){
+
+            if(coche.getMatricula().equals(matricula)){
+
+                coche.setVelocidad(velocidad);
+
+            }
+        }
+        return velocidad;
+    }
+
 
 
 }
