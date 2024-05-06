@@ -40,6 +40,18 @@ public class Model {
         return velocidad;
     }
 
+    public Integer getVelocidad(String matricula){
 
+        for(Coche coche : parkin){
+
+            if(coche.getMatricula().equals(matricula)){
+
+                return coche.getVelocidad();
+
+            }
+        }
+
+        return null;
+    }
 
 }
