@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Model {
 
-    ArrayList<Coche> parkin = new ArrayList<Coche>();
+    public static ArrayList<Coche> parking = new ArrayList<Coche>();
 
     /**
      * Metodo crear coche que a partir de los siguientes parametros crea un coche y lo añade al parking
@@ -13,10 +13,10 @@ public class Model {
      * @param velocidad
      * @return coche
      */
-    public Coche crearCoche(String matricula, String modelo, int velocidad){
+    public static Coche crearCoche(String matricula, String modelo, int velocidad){
 
         Coche coche = new Coche(matricula,modelo,velocidad);
-        parkin.add(coche);
+        parking.add(coche);
         return coche;
 
     }
@@ -26,9 +26,9 @@ public class Model {
      * @param matricula
      * @return coche
      */
-    public Coche getCoche(String matricula){
+    public static Coche getCoche(String matricula){
 
-        for(Coche coche : parkin){
+        for(Coche coche : parking){
 
             if (coche.matricula.equals(matricula)){
 
@@ -45,9 +45,9 @@ public class Model {
      * @param velocidad
      * @return velocidad
      */
-    public Integer cambiarVelocidad(String matricula, int velocidad){
+    public static Integer cambiarVelocidad(String matricula, int velocidad){
 
-        for(Coche coche : parkin){
+        for(Coche coche : parking){
 
             if(coche.getMatricula().equals(matricula)){
 
@@ -63,9 +63,9 @@ public class Model {
      * @param matricula
      * @return coche.getVelocidad
      */
-    public Integer getVelocidad(String matricula){
+    public static Integer getVelocidad(String matricula){
 
-        for(Coche coche : parkin){
+        for(Coche coche : parking){
 
             if(coche.getMatricula().equals(matricula)){
 
