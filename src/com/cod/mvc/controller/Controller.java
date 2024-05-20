@@ -42,8 +42,4 @@ public class Controller{
         miModel.cambiarVelocidad(matricula, velocidad);
     }
 
-
-
-
-
 }
