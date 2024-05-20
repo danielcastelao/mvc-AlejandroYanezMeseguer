@@ -1,29 +1,43 @@
-import cod.mvc.Coche;
-import cod.mvc.Model;
+import cod.mvc.model.Coche;
+import cod.mvc.model.Model;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class ModelTest {
 
     @Test
-    public void crearCocheReturnTrue(){
-        Assertions.assertNotNull(Model.crearCoche("matricula", "modelo", 20));
+    @DisplayName("Metodo crear coche")
+    public void testCrearCoche() {
+
+        ArrayList<Coche> parking = Model.crearCoche("1237ABC", "Toyota", 120);
+
+
+        Coche coche = parking.get(0);
+        Assertions.assertEquals("1237ABC", coche.getMatricula());
+        Assertions.assertEquals("Toyota", coche.getModelo());
+        Assertions.assertEquals(120, coche.getVelocidad());
     }
 
     @Test
-    public void getCocheAssertSameReturnTrue(){
-        Coche coche = Model.crearCoche("matricula", "modelo", 20);
-        Model.parking.add(coche);
-        Assertions.assertEquals(Model.getCoche("matricula"), coche);
+    @DisplayName("Metodo cambiar velocidad")
+    public void testCambiarVelocidad() {
+        Model.crearCoche("1231ABC", "Toyota", 120);
+
+
+        Model.cambiarVelocidad("1231ABC", 150);
+        Assertions.assertEquals(150, Model.getVelocidad("1231ABC"));
     }
 
     @Test
-    public void cambiarVelocidadComprobarCambioReturnTrue(){
-        Coche coche = Model.crearCoche("matricula", "modelo", 20);
-        Integer velocidad = 40;
-        Model.parking.add(coche);
-        Model.cambiarVelocidad("matricula", velocidad);
-        Assertions.assertEquals(velocidad, coche.getVelocidad());
+    @DisplayName("Metodo obtener velocidad")
+    public void testGetVelocidad() {
 
+        Model.crearCoche("1237ABC", "Toyota", 120);
+
+
+        Assertions.assertEquals(120, Model.getVelocidad("1237ABC"));
     }
 }
