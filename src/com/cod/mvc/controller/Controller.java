@@ -38,8 +38,8 @@ public class Controller{
      * @param matricula del coche
      * @param velocidad nueva
      */
-    public void cambiarVelocidad(String matricula, Integer velocidad){
-        miModel.cambiarVelocidad(matricula, velocidad);
+    public void cambiarVelocidad(String matricula, Integer velocidad, Model miModel){
+        miModel.cambiarVelocidad(matricula, velocidad, miModel);
     }
 
 }
