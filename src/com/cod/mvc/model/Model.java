@@ -119,7 +119,7 @@ public class Model implements Observable {
      * @param matricula matrícula del coche a buscar
      * @return datos del coche
      */
-    public Coche busarCoche(String matricula){
+    public Coche buscarCoche(String matricula){
         // Busca el coche
         Coche coche = getCoche(matricula);
         if (coche != null) {

@@ -28,5 +28,11 @@ public class App {
         // sobrepasando la velocidad máxima
         miController.cambiarVelocidad("HYU 4567", 150);
 
+        // creamos una instaciad del metodo buscarCoche con un coche que existe para probar que funciona
+        miModel.buscarCoche("SBC 1234");
+
+        // creamos una instaciad del metodo buscarCoche con un coche que no existe para probar que funciona
+        miModel.buscarCoche("HYU 4568");
+
     }
 }
