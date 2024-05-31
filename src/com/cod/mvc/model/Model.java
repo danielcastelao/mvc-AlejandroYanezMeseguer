@@ -113,4 +113,21 @@ public class Model implements Observable {
     public Integer getVelocidad(String matricula) {
         return getCoche(matricula).velocidad;
     }
+
+    /**
+     * Busca un coche por matrícula y devuelve sus datos
+     * @param matricula matrícula del coche a buscar
+     * @return datos del coche
+     */
+    public Coche busarCoche(String matricula){
+        // Busca el coche
+        Coche coche = getCoche(matricula);
+        if (coche != null) {
+            // Devuelve los datos del coche
+            return coche;
+        } else {
+            // Lanza una excepción si el coche no existe
+            throw new IllegalArgumentException("No existe un coche con la matrícula: " + matricula);
+        }
+    }
 }
