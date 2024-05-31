@@ -1,43 +1,75 @@
-import cod.mvc.model.Coche;
-import cod.mvc.model.Model;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import com.cod.mvc.controller.Controller;
+import com.cod.mvc.model.Coche;
+import com.cod.mvc.model.Model;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ModelTest {
+    private Controller controller;
+    private Model model;
 
-    @Test
-    @DisplayName("Metodo crear coche")
-    public void testCrearCoche() {
-
-        ArrayList<Coche> parking = Model.crearCoche("1237ABC", "Toyota", 120);
-
-
-        Coche coche = parking.get(0);
-        Assertions.assertEquals("1237ABC", coche.getMatricula());
-        Assertions.assertEquals("Toyota", coche.getModelo());
-        Assertions.assertEquals(120, coche.getVelocidad());
+    @BeforeEach
+    public void setup() {
+        model = Model.getInstancia();
+        controller = new Controller(model);
     }
 
     @Test
-    @DisplayName("Metodo cambiar velocidad")
-    public void testCambiarVelocidad() {
-        Model.crearCoche("1231ABC", "Toyota", 120);
-
-
-        Model.cambiarVelocidad("1231ABC", 150);
-        Assertions.assertEquals(150, Model.getVelocidad("1231ABC"));
+    public void createsCarWithGivenNameAndMatricula() {
+        controller.crearCoche("TestCar", "1234");
+        Coche coche = model.getCoche("1234");
+        assertNotNull(coche);
+        assertEquals("TestCar", coche.modelo);
+        assertEquals("1234", coche.matricula);
     }
 
     @Test
-    @DisplayName("Metodo obtener velocidad")
-    public void testGetVelocidad() {
-
-        Model.crearCoche("1237ABC", "Toyota", 120);
-
-
-        Assertions.assertEquals(120, Model.getVelocidad("1237ABC"));
+    public void changesCarSpeed() {
+        controller.crearCoche("TestCar", "1234");
+        controller.cambiarVelocidad("1234", 50);
+        Coche coche = model.getCoche("1234");
+        assertEquals(50, coche.velocidad);
     }
+
+    // test cambiar velocidad y supera el limite de 120
+    @Test
+    public void changesCarSpeedAndExceedsLimit() {
+
+        // Redirigir la salida estándar
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        controller.crearCoche("TestCocheRapido", "BX5555");
+        controller.cambiarVelocidad("BX5555", 150);
+        Coche coche = model.getCoche("BX5555");
+        assertEquals(150, coche.velocidad);
+
+        // Comprobar la salida
+        String salidaEsperada = "[ObserverVelocidad] Se ha cambiado la velocidad: 150km/hr\n" +
+                "[View] BX5555: 150km/hr\n" + "[ObserverLimite] INFRACCION\n";
+        assertEquals(salidaEsperada, outContent.toString());
+
+    }
+
+    /*@Test
+    public void doesNotChangeSpeedOfNonExistentCar() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.cambiarVelocidad("1234", 50);
+        });
+    }
+
+    @Test
+    public void doesNotCreateCarWithDuplicateMatricula() {
+        controller.crearCoche("TestCar", "1234");
+        assertThrows(IllegalArgumentException.class, () -> {
+            controller.crearCoche("AnotherCar", "1234");
+        });
+    }
+    */
 }
