@@ -5,7 +5,7 @@ import com.cod.mvc.model.Model;
 public class Controller{
 
     // Instancia del modelo
-    Model miModel = Model.getInstancia();
+    Model model = Model.getInstancia();
 
     /**
      * Constructor. Inicializamos el controller
@@ -29,7 +29,7 @@ public class Controller{
      * @param matricula del coche
      */
     public void crearCoche(String nombre, String matricula){
-        miModel.crearCoche(nombre, matricula);
+        model.crearCoche(nombre, matricula);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Controller{
      * @param velocidad nueva
      */
     public void cambiarVelocidad(String matricula, Integer velocidad){
-        miModel.cambiarVelocidad(matricula, velocidad);
+        model.cambiarVelocidad(matricula, velocidad);
     }
 
 
