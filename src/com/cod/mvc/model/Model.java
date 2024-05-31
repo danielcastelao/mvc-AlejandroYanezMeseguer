@@ -16,14 +16,34 @@ public class Model implements Observable {
     // para los observadores
     private static final ArrayList<Observer> observers = new ArrayList<Observer>();
 
+    // Singleton
+    //instancia única de la clase
+    private static Model instancia = null;
+
+    // Constructor privado
+    private Model() {}
+
+
+    // Método para obtener la única instancia de la clase
+    public static Model getInstancia() {
+        if (instancia == null) {
+            instancia = new Model();
+        }
+        return instancia;
+    }
+
+    // Métodos de la interfaz Observable
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
+
+    // Método para eliminar un observador
     @Override
     public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
+
 
     /**
      * Notifica a los observadores
@@ -31,9 +51,9 @@ public class Model implements Observable {
      * @param coche
      */
     @Override
-    public void notifyObservers(Coche coche,Model miModel) {
+    public void notifyObservers(Coche coche) {
         for (Observer observer : observers) {
-            observer.update(coche,miModel);
+            observer.update(coche);
         }
     }
 
@@ -73,12 +93,12 @@ public class Model implements Observable {
      * @param matricula identificador del coche
      * @param v nueva velocidad
      */
-    public void cambiarVelocidad(String matricula, Integer v, Model miModel) {
+    public void cambiarVelocidad(String matricula, Integer v) {
         // busca el coche
         getCoche(matricula).velocidad = v;
 
         // lo notificamos a todos los observadores
-        notifyObservers(getCoche(matricula),miModel);
+        notifyObservers(getCoche(matricula));
 
         // ya no retornamos la nueva velocidad
         // porque vamos a utilizar el patron observer
@@ -92,5 +112,26 @@ public class Model implements Observable {
      */
     public Integer getVelocidad(String matricula) {
         return getCoche(matricula).velocidad;
+    }
+
+    /**
+     * Busca un coche por matrícula y devuelve sus datos
+     * @param matricula matrícula del coche a buscar
+     * @return datos del coche
+     */
+    public String buscarCoche(String matricula){
+        // Busca el coche
+        Coche coche = getCoche(matricula);
+
+        if (coche != null) {
+            // Datos del coche
+            String datosCoches = coche.matricula + " " + coche.modelo + " " + coche.velocidad;
+            // Devuelve los datos del coche
+            return datosCoches;
+        } else {
+            // Lanza un mensaje de error si el coche no existe
+            System.out.println("El coche con la matrícula " + matricula + " no existe");
+        }
+        return "";
     }
 }
