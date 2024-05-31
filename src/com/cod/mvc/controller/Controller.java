@@ -4,8 +4,8 @@ import com.cod.mvc.model.Model;
 
 public class Controller{
 
-    // definimos la instancia del modelo
-    private final Model miModel;
+    // Instancia del modelo
+    Model miModel = Model.getInstancia();
 
     /**
      * Constructor. Inicializamos el controller
@@ -13,7 +13,6 @@ public class Controller{
      * @param miModel
      */
     public Controller(Model miModel){
-        this.miModel = miModel;
 
         // instanciamos al observador de la velocidad
         ObserverVelocidad observoVelocidad = new ObserverVelocidad();
