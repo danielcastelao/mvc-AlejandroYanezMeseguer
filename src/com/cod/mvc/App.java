@@ -29,10 +29,12 @@ public class App {
         miController.cambiarVelocidad("HYU 4567", 150);
 
         // creamos una instaciad del metodo buscarCoche con un coche que existe para probar que funciona
-        miModel.buscarCoche("SBC 1234");
+        String cocheDatos1 = miModel.buscarCoche("SBC 1234");
+        System.out.println(cocheDatos1);
 
         // creamos una instaciad del metodo buscarCoche con un coche que no existe para probar que funciona
-        miModel.buscarCoche("HYU 4568");
+        String cocheDatos2 = miModel.buscarCoche("SBC 12wd");
+        System.out.println(cocheDatos2);
 
     }
 }

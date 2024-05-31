@@ -119,15 +119,19 @@ public class Model implements Observable {
      * @param matricula matrícula del coche a buscar
      * @return datos del coche
      */
-    public Coche buscarCoche(String matricula){
+    public String buscarCoche(String matricula){
         // Busca el coche
         Coche coche = getCoche(matricula);
+
         if (coche != null) {
+            // Datos del coche
+            String datosCoches = coche.matricula + " " + coche.modelo + " " + coche.velocidad;
             // Devuelve los datos del coche
-            return coche;
+            return datosCoches;
         } else {
-            // Lanza una excepción si el coche no existe
-            throw new IllegalArgumentException("No existe un coche con la matrícula: " + matricula);
+            // Lanza un mensaje de error si el coche no existe
+            System.out.println("El coche con la matrícula " + matricula + " no existe");
         }
+        return "";
     }
 }
