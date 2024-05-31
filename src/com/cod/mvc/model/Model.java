@@ -31,9 +31,9 @@ public class Model implements Observable {
      * @param coche
      */
     @Override
-    public void notifyObservers(Coche coche,Model miModel) {
+    public void notifyObservers(Coche coche) {
         for (Observer observer : observers) {
-            observer.update(coche,miModel);
+            observer.update(coche);
         }
     }
 
@@ -73,12 +73,12 @@ public class Model implements Observable {
      * @param matricula identificador del coche
      * @param v nueva velocidad
      */
-    public void cambiarVelocidad(String matricula, Integer v, Model miModel) {
+    public void cambiarVelocidad(String matricula, Integer v) {
         // busca el coche
         getCoche(matricula).velocidad = v;
 
         // lo notificamos a todos los observadores
-        notifyObservers(getCoche(matricula),miModel);
+        notifyObservers(getCoche(matricula));
 
         // ya no retornamos la nueva velocidad
         // porque vamos a utilizar el patron observer
