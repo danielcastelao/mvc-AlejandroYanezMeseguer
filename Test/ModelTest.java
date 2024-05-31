@@ -16,7 +16,7 @@ public class ModelTest {
 
     @BeforeEach
     public void setup() {
-        model = new Model();
+        model = Model.getInstancia();
         controller = new Controller(model);
     }
 
