@@ -16,14 +16,34 @@ public class Model implements Observable {
     // para los observadores
     private static final ArrayList<Observer> observers = new ArrayList<Observer>();
 
+    // Singleton
+    //instancia única de la clase
+    private static Model instancia = null;
+
+    // Constructor privado
+    private Model() {}
+
+
+    // Método para obtener la única instancia de la clase
+    public static Model getInstancia() {
+        if (instancia == null) {
+            instancia = new Model();
+        }
+        return instancia;
+    }
+
+    // Métodos de la interfaz Observable
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
+
+    // Método para eliminar un observador
     @Override
     public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
+
 
     /**
      * Notifica a los observadores
