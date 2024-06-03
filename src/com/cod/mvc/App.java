@@ -23,10 +23,10 @@ public class App {
 
         // otro cambio de velocidad
         // sobrepasando la velocidad máxima
-        miController.cambiarVelocidad("HYU 4567", 150);
+        //miController.cambiarVelocidad("HYU 4567", 150);
 
         // subir la velocidad del coche
-        miController.subirVelocidad("SBC 1234", 50);
+        miController.bajarVelocidad("SBC 1234", 50);
 
     }
 }

@@ -25,6 +25,10 @@ public class Controller{
         // instanciamos un tercer observador para subir la velocidad
         ObserverSubirVelocidad observerSubirVelocidad= new ObserverSubirVelocidad(miModel);
         miModel.addObserver(observerSubirVelocidad);
+
+        // instanciamos un tercer observador para subir la velocidad
+        ObserverBajarVelocidad observerBajarVelocidad= new ObserverBajarVelocidad(miModel);
+        miModel.addObserver(observerBajarVelocidad);
     }
 
     /**
@@ -54,6 +58,13 @@ public class Controller{
         model.subirVelocidad(matricula, v);
     }
 
-
+    /**
+     * baja la velocidad de un coche
+     * @param matricula del coche
+     * @param v velocidad a subir
+     */
+    public void bajarVelocidad(String matricula, Integer v){
+        model.bajarVelocidad(matricula, v);
+    }
 
 }

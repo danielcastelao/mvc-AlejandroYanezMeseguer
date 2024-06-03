@@ -126,4 +126,17 @@ public class Model implements Observable {
             notifyObservers(coche);
         }
     }
+
+    /**
+     * baja la velocidad de un coche
+     * @param matricula identificador del coche
+     * @param decremento cantidad a subir
+     */
+    public void bajarVelocidad(String matricula, Integer decremento) {
+        Coche coche = getCoche(matricula);
+        if (coche != null) {
+            coche.setVelocidad(coche.getVelocidad() + decremento);
+            notifyObservers(coche);
+        }
+    }
 }
