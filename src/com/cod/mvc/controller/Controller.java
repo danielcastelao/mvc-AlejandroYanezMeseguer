@@ -21,6 +21,10 @@ public class Controller{
         // instanciamos un segundo observador para el limite de velocidad
         ObserverLimite observoLimite = new ObserverLimite();
         miModel.addObserver(observoLimite);
+
+        // instanciamos un tercer observador para subir la velocidad
+        ObserverSubirVelocidad observerSubirVelocidad= new ObserverSubirVelocidad(miModel);
+        miModel.addObserver(observerSubirVelocidad);
     }
 
     /**
@@ -41,7 +45,14 @@ public class Controller{
         model.cambiarVelocidad(matricula, velocidad);
     }
 
-
+    /**
+     * Sube la velocidad de un coche
+     * @param matricula del coche
+     * @param v velocidad a subir
+     */
+    public void subirVelocidad(String matricula, Integer v){
+        model.subirVelocidad(matricula, v);
+    }
 
 
 

@@ -10,4 +10,20 @@ public class Coche {
         this.matricula = matricula;
         this.velocidad = 0;
     }
+
+    /**
+     * getter de velocidad
+     * @return velocidad
+     */
+    public Integer getVelocidad() {
+        return velocidad;
+    }
+
+    /**
+     * setter de velocidad
+     * @param velocidad
+     */
+    public void setVelocidad(Integer velocidad) {
+        this.velocidad = velocidad;
+    }
 }

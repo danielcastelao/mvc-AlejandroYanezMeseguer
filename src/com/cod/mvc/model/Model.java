@@ -113,4 +113,17 @@ public class Model implements Observable {
     public Integer getVelocidad(String matricula) {
         return getCoche(matricula).velocidad;
     }
+
+    /**
+     * Sube la velocidad de un coche
+     * @param matricula identificador del coche
+     * @param incremento cantidad a subir
+     */
+    public void subirVelocidad(String matricula, Integer incremento) {
+        Coche coche = getCoche(matricula);
+        if (coche != null) {
+            coche.setVelocidad(coche.getVelocidad() + incremento);
+            notifyObservers(coche);
+        }
+    }
 }
